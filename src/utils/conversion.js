@@ -1,7 +1,3 @@
-const logx = (number, base) => {
-  return Math.log(number) / Math.log(base);
-};
-
 const valueToDigit = (value) => {
   if (value <= 9) {
     return value.toString();
@@ -10,25 +6,31 @@ const valueToDigit = (value) => {
   return String.fromCharCode(value - 10 + "A".charCodeAt(0));
 };
 
-const getDigits = (number, targetBase) => {
-  const numOfDigits = Math.ceil(logx(number, targetBase));
-  const digits = Array(numOfDigits);
-  let digitsIndex = numOfDigits - 1;
+export const getDigits = (number, targetBase) => {
+  const digits = [];
 
   while (number !== 0) {
-    digits[digitsIndex] = valueToDigit(number % targetBase);
+    digits.push(valueToDigit(number % targetBase));
     number = Number.parseInt(number / targetBase);
-    digitsIndex -= 1;
   }
 
-  return digits;
+  return digits.reverse();
 };
 
 export const convertBases = (numberString, originBase, targetBase) => {
   let number = Number.parseInt(numberString, originBase);
 
+  if (Number.isNaN(number)) {
+    alert("This is not a valid number");
+    return;
+  }
+
   if (targetBase === 10) {
     return number.toString();
+  }
+
+  if (number === 0) {
+    return "0";
   }
 
   const digits = getDigits(number, targetBase);
