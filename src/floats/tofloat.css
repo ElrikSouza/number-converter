@@ -1,0 +1,18 @@
+.firstBit,
+.expoent,
+.significand {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.firstBit {
+  color: #000;
+}
+
+.expoent {
+  color: #464679;
+}
+
+.significand {
+  color: #57b157;
+}
